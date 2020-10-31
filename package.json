@@ -1,0 +1,33 @@
+{
+  "name": "@scope/plugin-name",
+  "version": "1.0.0",
+  "description": "Description of plugin",
+  "homepage": "",
+  "main": ".eleventy.js",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "bump": "npm --no-git-tag-version version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/username/repo-name.git"
+  },
+  "keywords": [
+    "11ty",
+    "11ty-plugin",
+    "eleventy",
+    "eleventy-plugin"
+  ],
+  "author": {
+    "name": "username",
+    "url": "https://website.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/username/repo-name/issues"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^0.11.1"
+  }
+}
