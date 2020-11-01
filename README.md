@@ -10,7 +10,7 @@ The images are _only_ created in your output directory since the process runs af
 
 The window size used for the screenshot is 600px wide by 315px tall (which is then saved at 2x resolution) which you can use to test your template and styles if you choose to create them custom.
 
-🧪 **This plugin is currently being tested** and is not quite ready for production. Feel free to help test it, and [add an issue](https://github.com/5t3ph/eleventy-plugin-social-images/issues) if you find a problem.
+🧪 **If you find a problem** please [add an issue](https://github.com/5t3ph/eleventy-plugin-social-images/issues). This has been tested on local builds and within Netlify, but needs broader tests by the community.
 
 ## Usage
 
@@ -25,6 +25,12 @@ npm install @11tyrocks/eleventy-plugin-social-images
 1. Setup the command line script and add it to your Eleventy build
 2. Generate a JSON file containing data for each page you want social images
 3. Include a reference to the image in your templates
+
+**If you're using a host with continuous integration** (like Netlify) you will also need to amend the build script you provide to your host to add the following and ensure Chrome headless is successfully launched for use by Puppeteer in the pipeline:
+
+```bash
+AWS_LAMBDA_FUNCTION_NAME=trickpuppeteer npm run build
+```
 
 ### Setup the CLI Script
 
@@ -166,6 +172,8 @@ Reminder: The images are _only_ created in your output directory since the proce
 To use your own stylesheet, create a CSS file anywhere in your project. Then, pass the path like `--stylesPath social/style.css`.
 
 Your stylesheet will then be used _instead of_ the default one.
+
+**Note on web fonts:** For best results ensuring the web font loads for the screenshot, use the CSS `@import` option within your stylesheet.
 
 ### Custom template
 
