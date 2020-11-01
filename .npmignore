@@ -1,3 +1,6 @@
-index.md
-_includes
-_site
+.eleventyignore
+*.md
+!README.md
+_*
+pages*
+themes

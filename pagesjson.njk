@@ -1,0 +1,13 @@
+---
+permalink: ./pages.json
+permalinkBypassOutputDir: true
+eleventyExcludeFromCollections: true
+---
+[
+{%- for pages in collections.all %}
+	{
+      "title":"{% if pages.data.title %}{{ pages.data.title | addNbsp | safe }}{% else %}11ty Rocks{% endif %}",
+      "imgName":"{% if pages.data.title %}{{ pages.data.title | slug }}{% else %}home{% endif %}"
+	}{% if loop.last == false %},{% endif -%}
+{% endfor %}
+]

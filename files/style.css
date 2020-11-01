@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: linear-gradient(to top, #021b79, #0575e6);
+  --green: linear-gradient(to top, #0f3443, #26a170);
+  --sunset: linear-gradient(to right, #ff6a00, #ee0979);
+  --pop: linear-gradient(to top, #333399, #ff00cc);
+  --minimal: linear-gradient(to top, #c2c2c2, #fff);
+  --background: var(--blue);
+}
+
+body {
+  display: grid;
+  place-content: center;
+  text-align: center;
+  font-family: "Baloo 2";
+  min-height: 100vh;
+  background: var(--background);
+  color: #fff;
+  padding: 0 2rem;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+p {
+  font-size: 1.5rem;
+}
+
+body.blue {
+  --background: var(--blue);
+}
+body.green {
+  --background: var(--green);
+}
+body.sunset {
+  --background: var(--sunset);
+}
+body.pop {
+  --background: var(--pop);
+}
+body.minimal {
+  --background: var(--minimal);
+
+  color: #222;
+}

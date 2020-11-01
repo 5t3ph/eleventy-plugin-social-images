@@ -1,5 +1,7 @@
 ---
 layout: base.njk
+permalink: "/"
+title: Hello World
 ---
 
 ## Plugin Test Page
