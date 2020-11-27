@@ -1,6 +1,6 @@
 {
   "name": "@11tyrocks/eleventy-plugin-social-images",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Dynamically generated social media images.",
   "homepage": "https://11ty.rocks/#plugin-social-images",
   "main": ".eleventy.js",
