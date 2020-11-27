@@ -118,6 +118,10 @@ const dataPath = fs.realpathSync(dataFile);
     });
   }
 
+  // close all pages, fix perm issues on windows 10 (https://github.com/puppeteer/puppeteer/issues/298)
+  let browserPages = await browser.pages();
+  await Promise.all(browserPages.map(page =>page.close()));
+
   await browser.close();
   console.log("Social images complete!");
 })();
