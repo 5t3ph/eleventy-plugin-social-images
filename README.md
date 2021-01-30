@@ -12,6 +12,8 @@ The window size used for the screenshot is 600px wide by 315px tall (which is th
 
 🧪 **If you find a problem** please [add an issue](https://github.com/5t3ph/eleventy-plugin-social-images/issues). This has been tested on local builds and within Netlify, but needs broader tests by the community.
 
+🚨 **Please contribute a fix** if you know how to resolve using Puppeteer on WSL2, thanks!
+
 ## Usage
 
 First, install the package:
@@ -64,7 +66,7 @@ To create the required page data JSON, here is a starting template that loops th
 
 **Important:** Be sure to add the full path of your `pages.json` file to either `.gitignore` or `.eleventyignore` to prevent an infinite loop when Eleventy is in `--serve` mode.
 
-- This should be created as a Nunjucks template, ex. `pagesjson.njk` so that it is recognized by Eleventy for processing.
+- **This should be created as a Nunjucks template**, ex. `pagesjson.njk` so that it is recognized by Eleventy for processing.
 - Place this either at the root of your _input_ directory, or in a custom directory in your input folder (ex. `_generate`).
 - Note the unique frontmatter, which essentially mean "do not include this in the normal site output".
 - **If you have customized your input directory** via your Eleventy config, you may want to change the `permalink` value because it is relative to your _project root_, not the directory where it is placed.
@@ -74,16 +76,16 @@ To create the required page data JSON, here is a starting template that loops th
 
 ```js
 ---
-permalink: ./pages.json
+permalink: "./pages.json"
 permalinkBypassOutputDir: true
 eleventyExcludeFromCollections: true
 ---
 [
 {%- for pages in collections.all %}
-	{
+  {
       "title":"{{ pages.data.title | addNbsp | safe }}",
       "imgName":"{{ pages.data.title | slug }}"
-	}{% if loop.last == false %},{% endif -%}
+  }{% if loop.last == false %},{% endif -%}
 {% endfor %}
 ]
 ```
