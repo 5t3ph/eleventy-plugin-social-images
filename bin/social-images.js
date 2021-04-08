@@ -13,6 +13,7 @@ const defaults = {
   templatePath: "", // ex. social/template.html
   stylesPath: "", // ex. social/style.css,
   theme: "blue", // enum: 'blue' | 'green' | 'minimal' | 'sunset' | 'pop'
+  wsl: false,
 };
 
 const {
@@ -23,6 +24,7 @@ const {
   templatePath,
   stylesPath,
   theme,
+  wsl,
 } = {
   ...defaults,
   ...argv,
@@ -45,11 +47,19 @@ const dataPath = fs.realpathSync(dataFile);
 (async () => {
   console.log("Starting social images...");
 
-  const browser = await chromium.puppeteer.launch({
-    args: chromium.args,
-    executablePath: await chromium.executablePath,
-    headless: chromium.headless,
-  });
+  const browserArgs = {
+      args: chromium.args,
+      executablePath: await chromium.executablePath,
+      headless: chromium.headless,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    }
+
+  if(wsl){
+    browserArgs.executablePath = "google-chrome"
+    browserArgs.headless = true
+  }
+
+  const browser = await chromium.puppeteer.launch(browserArgs);
 
   const page = await browser.newPage();
 
