@@ -211,6 +211,15 @@ Since this full example includes style, the only option missing is `theme` since
 eleventy-social-images --siteName 'My Cool Site' --outputDir public --dataFile src/_generate/pages.json --previewDir imgs --templatePath social/template.html --stylesPath social/style.css"
 ```
 
+### WSL 
+
+If you use WSL, you'll need a browser. Install chrome in WSL by doing:
+``` bash
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt -y install ./google-chrome-stable_current_amd64.deb
+```
+You can confirm this worked by doing `google-chrome --version`.
+
 ## Colophon
 
 Hi - I'm Stephanie Eckles ([@5t3ph](https://twitter.com)), creator of [11ty.Rocks](https://11ty.rocks) and the other resources compiled there.
