@@ -50,7 +50,6 @@ const dataPath = fs.realpathSync(dataFile);
       args: chromium.args,
       executablePath: await chromium.executablePath,
       headless: chromium.headless,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
     }
   
   // WSL requires a different config
