@@ -12,8 +12,6 @@ The window size used for the screenshot is 600px wide by 315px tall (which is th
 
 🧪 **If you find a problem** please [add an issue](https://github.com/5t3ph/eleventy-plugin-social-images/issues). This has been tested on local builds and within Netlify, but needs broader tests by the community.
 
-🚨 **Please contribute a fix** if you know how to resolve using Puppeteer on WSL2, thanks!
-
 ## Usage
 
 First, install the package:
