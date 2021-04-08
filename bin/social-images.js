@@ -4,6 +4,7 @@ const argv = require("yargs-parser")(process.argv.slice(2));
 const chromium = require("chrome-aws-lambda");
 const fs = require("fs");
 const path = require("path");
+const isWsl = require('is-wsl');
 
 const defaults = {
   siteName: "11ty Rocks!",
@@ -13,7 +14,6 @@ const defaults = {
   templatePath: "", // ex. social/template.html
   stylesPath: "", // ex. social/style.css,
   theme: "blue", // enum: 'blue' | 'green' | 'minimal' | 'sunset' | 'pop'
-  wsl: false,
 };
 
 const {
@@ -24,7 +24,6 @@ const {
   templatePath,
   stylesPath,
   theme,
-  wsl,
 } = {
   ...defaults,
   ...argv,
@@ -53,8 +52,9 @@ const dataPath = fs.realpathSync(dataFile);
       headless: chromium.headless,
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     }
-
-  if(wsl){
+  
+  // WSL requires a different config
+  if(isWsl){
     browserArgs.executablePath = "google-chrome"
     browserArgs.headless = true
   }
