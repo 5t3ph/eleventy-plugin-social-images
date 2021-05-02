@@ -4,6 +4,7 @@ const argv = require("yargs-parser")(process.argv.slice(2));
 const chromium = require("chrome-aws-lambda");
 const fs = require("fs");
 const path = require("path");
+const isWsl = require('is-wsl');
 
 const defaults = {
   siteName: "11ty Rocks!",
@@ -45,11 +46,19 @@ const dataPath = fs.realpathSync(dataFile);
 (async () => {
   console.log("Starting social images...");
 
-  const browser = await chromium.puppeteer.launch({
-    args: chromium.args,
-    executablePath: await chromium.executablePath,
-    headless: chromium.headless,
-  });
+  const browserArgs = {
+      args: chromium.args,
+      executablePath: await chromium.executablePath,
+      headless: chromium.headless,
+    }
+  
+  // WSL requires a different config
+  if(isWsl){
+    browserArgs.executablePath = "google-chrome"
+    browserArgs.headless = true
+  }
+
+  const browser = await chromium.puppeteer.launch(browserArgs);
 
   const page = await browser.newPage();
 
