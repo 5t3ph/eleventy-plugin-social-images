@@ -13,6 +13,9 @@ const defaults = {
   templatePath: "", // ex. social/template.html
   stylesPath: "", // ex. social/style.css,
   theme: "blue", // enum: 'blue' | 'green' | 'minimal' | 'sunset' | 'pop'
+  width: 600,
+  height: 315,
+  deviceScaleFactor: 2
 };
 
 const {
@@ -23,6 +26,9 @@ const {
   templatePath,
   stylesPath,
   theme,
+  width,
+  height,
+  deviceScaleFactor
 } = {
   ...defaults,
   ...argv,
@@ -91,9 +97,9 @@ const dataPath = fs.realpathSync(dataFile);
 
   // Set the viewport to your preferred image size
   await page.setViewport({
-    width: 600,
-    height: 315,
-    deviceScaleFactor: 2,
+    width,
+    height,
+    deviceScaleFactor,
   });
 
   // Create a `previews` directory in the public folder
@@ -114,7 +120,7 @@ const dataPath = fs.realpathSync(dataFile);
     await page.screenshot({
       path: `${dir}/${post.imgName}.png`,
       type: "png",
-      clip: { x: 0, y: 0, width: 600, height: 315 },
+      clip: { x: 0, y: 0, width, height },
     });
   }
 
