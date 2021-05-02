@@ -133,15 +133,18 @@ Where the `env.URL` is provided by Netlify at build time. Your host may offer a 
 
 ## CLI Config Options
 
-| Option       | Type                                                      | Default     |
-| ------------ | --------------------------------------------------------- | ----------- |
-| siteName     | string                                                    | 11ty Rocks! |
-| outputDir    | string                                                    | \_site      |
-| imageDir     | string                                                    | previews    |
-| dataFile     | string                                                    | pages.json  |
-| templatePath | string                                                    |             |
-| stylesPath   | string                                                    |             |
-| theme        | enum: 'blue' \| 'green' \| 'minimal' \| 'sunset' \| 'pop' | blue        |
+| Option            | Type                                                      | Default     |
+|-------------------|-----------------------------------------------------------|-------------|
+| siteName          | string                                                    | 11ty Rocks! |
+| outputDir         | string                                                    | \_site      |
+| imageDir          | string                                                    | previews    |
+| dataFile          | string                                                    | pages.json  |
+| templatePath      | string                                                    |             |
+| stylesPath        | string                                                    |             |
+| theme             | enum: 'blue' \| 'green' \| 'minimal' \| 'sunset' \| 'pop' | blue        |
+| width             | number                                                    | 600         |
+| height            | number                                                    | 315         |
+| deviceScaleFactor | number                                                    | 2           |
 
 ## Config Examples
 
@@ -162,6 +165,12 @@ To select, from one of the predefined themes, pass `--theme [themename]` where `
 - minimal
 - sunset
 - pop
+
+### Custom image dimensions
+
+By default, this plugin will create social images that are 600px wide and 315px tall. To choose different dimensions, pass `--width` and `--height` arguments, as in `--width 1280 --height 720`.
+
+The default device scale factor (or [device pixel ratio](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio)) is 2, emulating high-dots-per-inch/Retina displays. To change the device scale factor, you can pass `---deviceScaleFactor`, as in `--deviceScaleFactor 1`.
 
 ### Custom preview directory to output images
 
@@ -210,7 +219,7 @@ You can pass both a custom template and stylesheet by defining both CLI options,
 Since this full example includes style, the only option missing is `theme` since it would have no additional effect.
 
 ```bash
-eleventy-social-images --siteName 'My Cool Site' --outputDir public --dataFile src/_generate/pages.json --previewDir imgs --templatePath social/template.html --stylesPath social/style.css"
+eleventy-social-images --siteName 'My Cool Site' --outputDir public --dataFile src/_generate/pages.json --previewDir imgs --templatePath social/template.html --stylesPath social/style.css --width 1280 --height 720 --deviceScaleFactor 1"
 ```
 
 ## Colophon
