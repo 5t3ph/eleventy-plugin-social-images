@@ -132,7 +132,7 @@ Where the `env.URL` is provided by Netlify at build time. Your host may offer a 
 ## CLI Config Options
 
 | Option            | Type                                                      | Default     |
-|-------------------|-----------------------------------------------------------|-------------|
+| ----------------- | --------------------------------------------------------- | ----------- |
 | siteName          | string                                                    | 11ty Rocks! |
 | outputDir         | string                                                    | \_site      |
 | imageDir          | string                                                    | previews    |
@@ -220,13 +220,15 @@ Since this full example includes style, the only option missing is `theme` since
 eleventy-social-images --siteName 'My Cool Site' --outputDir public --dataFile src/_generate/pages.json --previewDir imgs --templatePath social/template.html --stylesPath social/style.css --width 1280 --height 720 --deviceScaleFactor 1"
 ```
 
-### WSL 
+### WSL
 
 If you use WSL, you'll need a browser. Install chrome in WSL by doing:
-``` bash
+
+```bash
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt -y install ./google-chrome-stable_current_amd64.deb
 ```
+
 You can confirm this worked by doing `google-chrome --version`.
 
 ## Colophon
@@ -245,3 +247,8 @@ This plugin is an adaptation for my solution originally [detailed in this blog p
 ## Credits
 
 The included gradient themes inspired by [uiGradients](https://uigradients.com/)
+
+### Contributors
+
+- [@tomquinonero](https://github.com/tomquinonero) for adding WSL support
+- [@BenDMyers](https://github.com/BenDMyers) for updating to allow custom user dimensions
