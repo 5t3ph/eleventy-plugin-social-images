@@ -117,10 +117,19 @@ const dataPath = fs.realpathSync(dataFile);
 
   // Go over all the posts
   for (const post of pages) {
-    // Update the H1 element with the post title
+    // Update the document's content with data from the generated json
     await page.evaluate((post) => {
+      // Update the H1 element with the post title
       const title = document.querySelector("h1");
       title.innerHTML = post.title;
+
+      // look for and replace any other values that were passed to "variables"
+      if (post.variables) {
+        for (let templateVar in post.variables) {
+          let replace = new RegExp(`{{ ${templateVar} }}`, "g")
+          document.body.innerHTML = document.body.innerHTML.replace(replace, post.variables[templateVar])
+        }
+      }
     }, post);
 
     console.log(`Image: ${post.imgName}.png`);

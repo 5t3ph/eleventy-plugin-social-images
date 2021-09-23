@@ -2,6 +2,8 @@
 layout: base.njk
 permalink: "/"
 title: Hello World
+image: 'http://placecorgi.com/800/200'
+publishDate: '2020-09-23'
 ---
 
 ## Plugin Test Page
@@ -25,7 +27,7 @@ Gummi bears chocolate bar gummi bears gummies. Soufflé soufflé dessert wafer c
 
 Gummi bears candy cotton candy oat cake candy canes bonbon cake. Gummi bears jelly marzipan. Dessert topping biscuit jujubes jelly beans caramels cookie. Gingerbread candy gummi bears I love topping cookie halvah carrot cake topping. Sugar plum tart liquorice liquorice candy pudding powder. I love I love halvah chocolate cake I love cake apple pie wafer.
 
-![test image](http://placecorgi.com/800/200)
+![test image]({{ image }})
 
 I love lollipop chocolate cake marshmallow sesame snaps. Tart gingerbread fruitcake icing sesame snaps danish sesame snaps soufflé jujubes. Halvah I love I love lemon drops. Donut I love candy canes I love dragée sugar plum. I love tootsie roll I love cake. Cupcake danish danish macaroon lemon drops liquorice chocolate tart.
 
