@@ -143,6 +143,19 @@ const dataPath = fs.realpathSync(dataFile);
       type: "png",
       clip: { x: 0, y: 0, width, height },
     });
+
+    // Reinstate variables for next post
+    if (post.variables) {
+      await page.evaluate((post) => {
+        for (let templateVar in post.variables) {
+          let replace = new RegExp(post.variables[templateVar], "g");
+          document.body.innerHTML = document.body.innerHTML.replace(
+            replace,
+            `{{ ${templateVar} }}`
+          );
+        }
+      }, post);
+    }
   }
 
   // close all pages, fix perm issues on windows 10 (https://github.com/puppeteer/puppeteer/issues/298)
