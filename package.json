@@ -1,6 +1,6 @@
 {
   "name": "@11tyrocks/eleventy-plugin-social-images",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Dynamically generated social media images for use in Eleventy sites.",
   "homepage": "https://11ty.rocks/#plugin-social-images",
   "main": ".eleventy.js",
@@ -22,7 +22,9 @@
     "11ty-plugin",
     "eleventy",
     "eleventy-plugin",
-    "social-images"
+    "social-images",
+    "og",
+    "open-graph"
   ],
   "author": {
     "name": "5t3ph",
@@ -36,10 +38,10 @@
     "@11ty/eleventy": "^0.12.1"
   },
   "dependencies": {
-    "chrome-aws-lambda": "^5.5.0",
+    "chrome-aws-lambda": "^10.1.0",
     "is-wsl": "^2.2.0",
-    "puppeteer": "^5.5.0",
-    "puppeteer-core": "^5.5.0",
+    "puppeteer": "^10.1.0",
+    "puppeteer-core": "^10.1.0",
     "yargs-parser": "^20.2.4"
   }
 }

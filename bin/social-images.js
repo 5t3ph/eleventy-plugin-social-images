@@ -4,7 +4,7 @@ const argv = require("yargs-parser")(process.argv.slice(2));
 const chromium = require("chrome-aws-lambda");
 const fs = require("fs");
 const path = require("path");
-const isWsl = require('is-wsl');
+const isWsl = require("is-wsl");
 
 const defaults = {
   siteName: "11ty Rocks!",
@@ -16,7 +16,7 @@ const defaults = {
   theme: "blue", // enum: 'blue' | 'green' | 'minimal' | 'sunset' | 'pop'
   width: 600,
   height: 315,
-  deviceScaleFactor: 2
+  deviceScaleFactor: 2,
 };
 
 const {
@@ -29,7 +29,7 @@ const {
   theme,
   width,
   height,
-  deviceScaleFactor
+  deviceScaleFactor,
 } = {
   ...defaults,
   ...argv,
@@ -53,15 +53,15 @@ const dataPath = fs.realpathSync(dataFile);
   console.log("Starting social images...");
 
   const browserArgs = {
-      args: chromium.args,
-      executablePath: await chromium.executablePath,
-      headless: chromium.headless,
-    }
-  
+    args: chromium.args,
+    executablePath: await chromium.executablePath,
+    headless: chromium.headless,
+  };
+
   // WSL requires a different config
-  if(isWsl){
-    browserArgs.executablePath = "google-chrome"
-    browserArgs.headless = true
+  if (isWsl) {
+    browserArgs.executablePath = "google-chrome";
+    browserArgs.headless = true;
   }
 
   const browser = await chromium.puppeteer.launch(browserArgs);
@@ -126,8 +126,11 @@ const dataPath = fs.realpathSync(dataFile);
       // look for and replace any other values that were passed to "variables"
       if (post.variables) {
         for (let templateVar in post.variables) {
-          let replace = new RegExp(`{{ ${templateVar} }}`, "g")
-          document.body.innerHTML = document.body.innerHTML.replace(replace, post.variables[templateVar])
+          let replace = new RegExp(`{{ ${templateVar} }}`, "g");
+          document.body.innerHTML = document.body.innerHTML.replace(
+            replace,
+            post.variables[templateVar]
+          );
         }
       }
     }, post);
@@ -144,7 +147,7 @@ const dataPath = fs.realpathSync(dataFile);
 
   // close all pages, fix perm issues on windows 10 (https://github.com/puppeteer/puppeteer/issues/298)
   let browserPages = await browser.pages();
-  await Promise.all(browserPages.map(page =>page.close()));
+  await Promise.all(browserPages.map((page) => page.close()));
 
   await browser.close();
   console.log("Social images complete!");

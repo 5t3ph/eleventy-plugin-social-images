@@ -90,6 +90,24 @@ eleventyExcludeFromCollections: true
 
 You may modify what is used as the values based on your own naming convention and permalink structure. You may need to scope it to a particular collection vs. `all`. [Check out the 11ty docs on collections >](https://www.11ty.dev/docs/collections/)
 
+**Added in v0.3.0** - include additional variables to pass into a custom template, such as:
+
+```js
+[
+{%- for pages in collections.all %}
+  {
+      "title":"{{ pages.data.title | addNbsp | safe }}",
+      "imgName":"{{ pages.data.title | slug }}",
+      "variables": {
+        "publishDate": "{{ pages.data.publishDate }}"
+      }
+  }{% if loop.last == false %},{% endif -%}
+{% endfor %}
+]
+```
+
+_Kudos to [Thomas Michael Semmler](https://helloyes.dev/) for creating the `variables` functionality!_
+
 ### Optional: Add the Plugin
 
 As noted previously, the plugin enables the `addNbsp` filter.
@@ -240,8 +258,6 @@ Hi - I'm Stephanie Eckles ([@5t3ph](https://twitter.com)), creator of [11ty.Rock
 This plugin is an adaptation for my solution originally [detailed in this blog post](https://dev.to/5t3ph/automated-social-sharing-images-with-puppeteer-11ty-and-netlify-22ln) and included in my [11ty Netlify Jumpstart](https://11ty-netlify-jumpstart.netlify.app/). It's in active use on my 11ty-based sites:
 
 - [11ty.Rocks](https://11ty.rocks)
-- [ModernCSS.dev](https://moderncss.dev)
-- [StyleStage.dev](https://stylestage.dev)
 - [ThinkDoBeCreate](https://thinkdobecreate.com)
 
 ## Credits
@@ -252,3 +268,4 @@ The included gradient themes inspired by [uiGradients](https://uigradients.com/)
 
 - [@tomquinonero](https://github.com/tomquinonero) for adding WSL support
 - [@BenDMyers](https://github.com/BenDMyers) for updating to allow custom user dimensions
+- [@nachtfunke](https://github.com/nachtfunke) for adding template variables for better customization

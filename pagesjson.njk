@@ -5,12 +5,12 @@ eleventyExcludeFromCollections: true
 ---
 [
 {%- for pages in collections.all %}
-	{
+  {
       "title":"{% if pages.data.title %}{{ pages.data.title | addNbsp | safe }}{% else %}11ty Rocks{% endif %}",
       "imgName":"{% if pages.data.title %}{{ pages.data.title | slug }}{% else %}home{% endif %}",
       "variables": {
-            "publishDate": "{{ pages.data.publishDate }}"
+        "publishDate": "{{ pages.data.publishDate }}"
       }
-	}{% if loop.last == false %},{% endif -%}
+  }{% if loop.last == false %},{% endif -%}
 {% endfor %}
 ]
