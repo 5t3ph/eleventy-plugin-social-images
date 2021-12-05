@@ -10,7 +10,7 @@ The images are _only_ created in your output directory since the process runs af
 
 The window size used for the screenshot is 600px wide by 315px tall (which is then saved at 2x resolution) which you can use to test your template and styles if you choose to create them custom.
 
-🧪 **If you find a problem** please [add an issue](https://github.com/5t3ph/eleventy-plugin-social-images/issues). This has been tested on local builds and within Netlify, but needs broader tests by the community.
+🧪 **If you find a problem** please [add an issue](https://github.com/5t3ph/eleventy-plugin-social-images/issues). This has been tested on local builds and within Netlify, but needs broader tests by the community. Thanks to the [contributors](#contributors)!
 
 ## Usage
 
@@ -105,6 +105,8 @@ You may modify what is used as the values based on your own naming convention an
 {% endfor %}
 ]
 ```
+
+Use in your template by adding for example `{{ publishDate }}` where you want the data to appear.
 
 _Kudos to [Thomas Michael Semmler](https://helloyes.dev/) for creating the `variables` functionality!_
 
