@@ -90,6 +90,8 @@ eleventyExcludeFromCollections: true
 
 You may modify what is used as the values based on your own naming convention and permalink structure. You may need to scope it to a particular collection vs. `all`. [Check out the 11ty docs on collections >](https://www.11ty.dev/docs/collections/)
 
+#### Custom template variables
+
 **Added in v0.3.0** - include additional variables to pass into a custom template, such as:
 
 ```js
@@ -99,16 +101,21 @@ You may modify what is used as the values based on your own naming convention an
       "title":"{{ pages.data.title | addNbsp | safe }}",
       "imgName":"{{ pages.data.title | slug }}",
       "variables": {
-        "publishDate": "{{ pages.data.publishDate }}"
+        "postdate": "{{ pages.data.postdate }}"
+        {%- if pages.data.description %},
+        "description": "{{ pages.data.description }}"
+        {% endif %}
       }
   }{% if loop.last == false %},{% endif -%}
 {% endfor %}
 ]
 ```
 
-Use in your template by adding for example `{{ publishDate }}` where you want the data to appear.
+Use in your template by adding data attributes to elements that should contain the variable value. For example `<p data-postdate></p>` where you want the `postdate` to appear.
 
-_Kudos to [Thomas Michael Semmler](https://helloyes.dev/) for creating the `variables` functionality!_
+Unavailable variables will simply produce empty elements. If you find the empty elements are impacting your template styles, remove them via CSS with the `:empty` selector, ex `p:empty { display: none }`.
+
+_Kudos to [Thomas Michael Semmler](https://helloyes.dev/) for initiating the `variables` functionality!_
 
 ### Optional: Add the Plugin
 
@@ -211,6 +218,8 @@ To use your own template, create an html file in your project. You may want to e
 Then, pass the path like `--templatePath social/template.html`.
 
 Your template will then be used _instead of_ the default one.
+
+Refer back to [custom template variables](#custom-template-variables) for how to enable additional template data.
 
 #### Important notes on custom templates
 

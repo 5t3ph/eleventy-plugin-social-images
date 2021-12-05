@@ -126,11 +126,10 @@ const dataPath = fs.realpathSync(dataFile);
       // look for and replace any other values that were passed to "variables"
       if (post.variables) {
         for (let templateVar in post.variables) {
-          let replace = new RegExp(`{{ ${templateVar} }}`, "g");
-          document.body.innerHTML = document.body.innerHTML.replace(
-            replace,
-            post.variables[templateVar]
-          );
+          const varEl = document.querySelector(`[data-${templateVar}]`);
+          if (varEl) {
+            varEl.innerHTML = post.variables[templateVar];
+          }
         }
       }
     }, post);
@@ -144,15 +143,14 @@ const dataPath = fs.realpathSync(dataFile);
       clip: { x: 0, y: 0, width, height },
     });
 
-    // Reinstate variables for next post
+    // Remove variable values to reset
     if (post.variables) {
       await page.evaluate((post) => {
         for (let templateVar in post.variables) {
-          let replace = new RegExp(post.variables[templateVar], "g");
-          document.body.innerHTML = document.body.innerHTML.replace(
-            replace,
-            `{{ ${templateVar} }}`
-          );
+          const varEl = document.querySelector(`[data-${templateVar}]`);
+          if (varEl) {
+            varEl.innerHTML = "";
+          }
         }
       }, post);
     }

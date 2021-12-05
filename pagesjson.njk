@@ -9,7 +9,10 @@ eleventyExcludeFromCollections: true
       "title":"{% if pages.data.title %}{{ pages.data.title | addNbsp | safe }}{% else %}11ty Rocks{% endif %}",
       "imgName":"{% if pages.data.title %}{{ pages.data.title | slug }}{% else %}home{% endif %}",
       "variables": {
-        "publishDate": "{{ pages.data.publishDate }}"
+        "postdate": "{{ pages.data.postdate }}"
+        {%- if pages.data.description %},
+        "description": "{{ pages.data.description }}"
+        {% endif %}
       }
   }{% if loop.last == false %},{% endif -%}
 {% endfor %}

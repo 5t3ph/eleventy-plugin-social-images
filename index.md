@@ -2,8 +2,8 @@
 layout: base.njk
 permalink: "/"
 title: Hello World
-image: 'http://placecorgi.com/800/200'
-publishDate: '2020-09-23'
+image: "http://placecorgi.com/800/200"
+postdate: "2020-09-23"
 ---
 
 ## Plugin Test Page
