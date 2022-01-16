@@ -246,7 +246,7 @@ You can pass both a custom template and stylesheet by defining both CLI options,
 Since this full example includes style, the only option missing is `theme` since it would have no additional effect.
 
 ```bash
-eleventy-social-images --siteName 'My Cool Site' --outputDir public --dataFile src/_generate/pages.json --previewDir imgs --templatePath social/template.html --stylesPath social/style.css --width 1280 --height 720 --deviceScaleFactor 1"
+eleventy-social-images --siteName 'My Cool Site' --outputDir public --dataFile src/_generate/pages.json --imageDir imgs --templatePath social/template.html --stylesPath social/style.css --width 1280 --height 720 --deviceScaleFactor 1
 ```
 
 ### WSL
