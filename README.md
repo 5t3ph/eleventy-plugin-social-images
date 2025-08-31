@@ -26,12 +26,6 @@ npm install @11tyrocks/eleventy-plugin-social-images
 2. Generate a JSON file containing data for each page you want social images
 3. Include a reference to the image in your templates
 
-**If you're using a host with continuous integration** (like Netlify) you will also need to amend the build script you provide to your host to add the following and ensure Chrome headless is successfully launched for use by Puppeteer in the pipeline:
-
-```bash
-AWS_LAMBDA_FUNCTION_NAME=trickpuppeteer npm run build
-```
-
 ### Setup the CLI Script
 
 Technically, this package offers a plugin component, but most of the functionality is added by calling the command line script.
@@ -51,6 +45,22 @@ It's recommended to add this _after_ building Eleventy for production to reduce 
   "build": "eleventy ; npm run social-images"
 }
 ```
+
+**To enable local build testing** you can add a second script to set an environment variable to indicate the build is local which will trigger the appropriate version of Puppeteer.
+
+This requires also installing Puppeteer for your own dev dependencies and it _must match_ the version currently in use by the plugin:
+
+```bash
+npm i puppeteer@24.15.0
+```
+
+Then, add a secondary build script that includes the necessary environment variable:
+
+```js
+"build:local": "LOCAL_DEV=true npm run build"
+```
+
+You can now use `npm run build:local` to test how your social images will look.
 
 ### Setup the Page Data JSON
 
@@ -251,6 +261,8 @@ eleventy-social-images --siteName 'My Cool Site' --outputDir public --dataFile s
 
 ### WSL
 
+**Note: unconfirmed as of v1**
+
 If you use WSL, you'll need a browser. Install chrome in WSL by doing:
 
 ```bash
@@ -270,10 +282,13 @@ This plugin is an adaptation for my solution originally [detailed in this blog p
 
 - [11ty.Rocks](https://11ty.rocks)
 - [ThinkDoBeCreate](https://thinkdobecreate.com)
+- [Modern CSS Solutions](https://thinkdobecreate.com)
 
 ## Credits
 
 The included gradient themes inspired by [uiGradients](https://uigradients.com/)
+
+**v1.0 update** made possible by referring to the [11ty / api-screenshot](https://github.com/11ty/api-screenshot) service created by Zach Leatherman.
 
 ### Contributors
 

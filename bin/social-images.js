@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 const argv = require("yargs-parser")(process.argv.slice(2));
-const chromium = require("chrome-aws-lambda");
+const puppeteer = require("puppeteer-core");
+const chromium = require("@sparticuz/chromium");
 const fs = require("fs");
 const path = require("path");
 const isWsl = require("is-wsl");
@@ -52,19 +53,41 @@ const dataPath = fs.realpathSync(dataFile);
 (async () => {
   console.log("Starting social images...");
 
-  const browserArgs = {
-    args: chromium.args,
-    executablePath: await chromium.executablePath,
-    headless: chromium.headless,
+  // Set the viewport to your preferred image size
+  const viewport = {
+    width,
+    height,
+    deviceScaleFactor,
   };
 
-  // WSL requires a different config
-  if (isWsl) {
-    browserArgs.executablePath = "google-chrome";
-    browserArgs.headless = true;
+  let puppeteerOptions = {
+    defaultViewport: viewport,
+    ignoreHTTPSErrors: true,
+  };
+
+  let puppeteerWrapper;
+
+  if (process?.env?.LOCAL_DEV) {
+    puppeteerWrapper = await import("puppeteer");
+  } else {
+    puppeteerWrapper = puppeteer;
+
+    chromium.setHeadlessMode = true;
+    chromium.setGraphicsMode = false;
+
+    puppeteerOptions.args = chromium.args;
+
+    // WSL requires a different config
+    if (isWsl) {
+      puppeteerOptions.executablePath = "google-chrome";
+      puppeteerOptions.headless = true;
+    } else {
+      puppeteerOptions.executablePath = await chromium.executablePath();
+      puppeteerOptions.headless = chromium.headless;
+    }
   }
 
-  const browser = await chromium.puppeteer.launch(browserArgs);
+  let browser = await puppeteerWrapper.launch(puppeteerOptions);
 
   const page = await browser.newPage();
 
@@ -103,13 +126,6 @@ const dataPath = fs.realpathSync(dataFile);
 
   // Wait until the document is fully rendered
   await page.evaluateHandle("document.fonts.ready");
-
-  // Set the viewport to your preferred image size
-  await page.setViewport({
-    width,
-    height,
-    deviceScaleFactor,
-  });
 
   // Create a `previews` directory in the public folder
   const dir = path.resolve(__dirname, previewPath);

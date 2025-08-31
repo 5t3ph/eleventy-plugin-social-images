@@ -1,7 +1,7 @@
 ---
 layout: base.njk
-title: A Super Fantastic Post Headline
+title: An Incredibly Fantastic Post Headline
 permalink: "/testpage/"
-postdate: "2021-10-02"
+postdate: "2025-08-31"
 description: "A nice description"
 ---
